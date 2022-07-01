@@ -13,15 +13,12 @@ public:
     }
     void operator++()
     {
-        ++value;
+        value = value + 1;
     }
-    void operator++(int)
-    {
-        value++;
-    }
+
     void display()
     {
-        cout << value;
+        cout << value << endl;
     }
 };
 int main()
