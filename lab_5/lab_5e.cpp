@@ -1,28 +1,52 @@
-// finding area of square, rectangle and triangle using function overloading
 #include <iostream>
-#include <math.h>
 using namespace std;
-void area(float);
-void area(float, float);
-void area(float, float, float);
+class shape
+{
+protected:
+    float length, breadth;
 
+public:
+    void get_data()
+    {
+        cout << "Enter length:" << endl;
+        cin >> length;
+        cout << "Enter breadth:" << endl;
+        cin >> breadth;
+    }
+    virtual void display_area() = 0; // virtual function in shape class
+};
+class triangle : public shape
+{
+public:
+    void get_data()
+    {
+        cout << "For triangle" << endl;
+        shape::get_data();
+    }
+    void display_area()
+    {
+        cout << "Area of triangle is:" << 0.5 * length * breadth << endl;
+    }
+};
+class rectangle : public shape
+{
+public:
+    void get_data()
+    {
+        cout << "For Reactangle" << endl;
+        shape::get_data();
+    }
+    void display_area()
+    {
+        cout << "Area of reactangle is:" << length * breadth << endl;
+    }
+};
 int main()
 {
-    area(3);
-    area(5, 6);
-    area(3, 4, 5);
-}
-void area(float length)
-{
-    cout << "Area of square:" << length * length << endl;
-}
-void area(float length, float breadth)
-{
-    cout << "Area of rectangle:" << length * breadth << endl;
-}
-void area(float a, float b, float c)
-{
-    float s;
-    s = (a + b + c) / 2;
-    cout << "Area of Triangle:" << sqrt(s * (s - a) * (s - b) * (s - c));
+    triangle t;
+    rectangle r;
+    t.get_data();
+    r.get_data();
+    t.display_area();
+    r.display_area();
 }
